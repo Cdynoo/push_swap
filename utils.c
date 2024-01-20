@@ -51,7 +51,7 @@ void	sort_list(long *arr, int len)
 	}
 }
 
-static void	*ft_memset(void *ptr, int c, size_t len)
+void	*ft_memset(void *ptr, int c, size_t len)
 {
 	unsigned char	*p;
 

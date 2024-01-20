@@ -14,14 +14,18 @@
 
 static void	dc_dragstreak(t_list **stack, t_streak	*longest)
 {
+	//dc_show(stack);
 	while (longest->last->num != ((*stack)->prev->num))
 	{
+		//dc_show(stack);
+		dc_rot_or_rev(stack, dc_num_rot(longest->last, (*stack)->prev));
 		if (((*stack)->i) == ((*stack)->next->i + 1))
 		{
 			dc_swap(stack, "sa\n");
 			//dc_show(stack);
+			continue ;
 		}
-		dc_rot_or_rev(stack, dc_num_rot(longest->last, (*stack)->prev));
+		
 		//dc_show(stack);
 	}
 }
@@ -36,7 +40,13 @@ t_streak	*dc_getstreak(t_list **stack)
 	if (cyclic_streak->len >= longest->len)
 	{
 		free(longest);
+		longest = NULL;
 		longest = cyclic_streak;
+	}
+	else
+	{
+		free(cyclic_streak);
+		cyclic_streak = NULL;
 	}
 	dc_dragstreak(stack, longest);
 	return (longest);
@@ -50,7 +60,10 @@ int	dc_updatestreak(t_list **stack)
 	prevhead = (*stack)->num;
 	longest = dc_getstreak(stack);
 	if (longest)
+	{
 		free(longest);
+		longest = NULL;
+	}
 	if (prevhead != (*stack)->num)
 		return (1);
 	return (0);

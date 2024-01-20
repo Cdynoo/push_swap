@@ -15,14 +15,23 @@
 t_list	*dc_new_node(long number, int index)
 {
 	t_list	*node;
+	int		*instructions;
 
 	node = (t_list *)malloc(sizeof(t_list));
 	if (!node)
 		return (NULL);
+	instructions = ft_calloc(6, sizeof(int));
+	if (!instructions)
+	{
+		free(node);
+		return (NULL);
+	}
 	node->prev = node;
 	node->next = node;
 	node->num = number;
 	node->i = index;
+	node->op = instructions;
+	node->moves = 0;
 	return (node);
 }
 
@@ -65,6 +74,8 @@ t_list	*dc_pop(t_list **lst)
 			temp = NULL;
 		(*lst)->prev->next = (*lst)->next;
 		(*lst)->next->prev = (*lst)->prev;
+		free((*lst)->op);
+		(*lst)->op = NULL;
 		free(*lst);
 		*lst = temp;
 		return (dc_new_node(number, index));
@@ -82,6 +93,8 @@ void	dc_clear(t_list **lst)
 		while (*lst)
 		{
 			temp = *lst;
+			free(temp->op);
+			temp->op = NULL;
 			(*lst) = (*lst)->next;
 			free(temp);
 			temp = NULL;

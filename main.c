@@ -29,7 +29,7 @@ static int	detect_flow(long num, int dig, int sign)
 {
 	if (num > INT_MAX / 10)
 		return (1);
-	else if (num * 10 > (INT_MAX - dig + sign))
+	else if (dig && (num * 10 > (INT_MAX - dig + sign)))
 		return (1);
 	return (0);
 }
@@ -66,6 +66,18 @@ static int	read_num(const char *start, long *field)
 	return (1);
 }
 
+/*void showlist(long *arr, int len)
+{
+	int i;
+
+	i = 0;
+	while (i < len)
+	{
+		printf("[%d] %ld.\n", i, arr[i]);
+		i++;
+	}
+}*/
+
 int	main(int argc, char **argv)
 {
 	int		i;
@@ -89,7 +101,7 @@ int	main(int argc, char **argv)
 	if (!is_sorted(list_a, argc - 1))
 	{
 		stack_a = dc_build_list(list_a, argc - 1);
-		dc_sort(stack_a, list_a, argc - 1);
+		dc_naive_sort(stack_a, list_a, argc - 1);
 	}
 	free(list_a);
 	return (0);

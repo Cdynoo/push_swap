@@ -72,6 +72,7 @@ t_streak	*dc_longeststreak(t_list **stack)
 			longest->first = (*stack)->prev;
 		}
 		free(currlongest);
+		currlongest = NULL;
 	}
 	return (longest);
 }

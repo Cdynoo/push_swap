@@ -41,7 +41,6 @@ static int	dc_optimoves(t_list **stack, int rotations)
 		return (rotations);
 	else
 		return (len - rotations);
-	//printf("opt\n");
 }
 void	dc_rot_or_revb(t_list **stack, int rotations)
 {
@@ -74,14 +73,17 @@ void	dc_movenode(t_list **stack_a, t_list **stack_b, int len)
 	bottom_moves = dc_optimoves(stack_b, dc_num_rot(nextbottom, *stack_b)) + 1;
 	if (top_moves <= bottom_moves)
 	{
-		//printf("putting %ld, in %d moves\n", nexttop->num, top_moves);
+		//printf("putting top %ld, in %d moves\n", nexttop->num, top_moves);
 		dc_rot_or_revb(stack_b, dc_num_rot(nexttop, *stack_b));
 	}
 	else
 	{
 		dc_rot_or_revb(stack_b, dc_num_rot(nextbottom, *stack_b));
-		//printf("putting %ld, in %d moves\n", nextbottom->num, bottom_moves);
+		//printf("putting bottom %ld, in %d moves\n", nextbottom->num, bottom_moves);
+		//dc_rotate(stack_a, "raa\n");
 	}
 	dc_push(stack_b, stack_a, "pa\n");
+	if (top_moves > bottom_moves)
+		dc_rotate(stack_a, "ra\n");
 	//printf("finished moves to a\n");
 }

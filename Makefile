@@ -14,7 +14,7 @@ NAME = push_swap
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror
+#FLAGS = -Wall -Wextra -Werror
 
 SOURCE  =  list_building.c \
 		   list_manipulation.c \
@@ -24,6 +24,7 @@ SOURCE  =  list_building.c \
 		   streak.c \
 		   dc_init.c  \
 		   dc_movenode.c \
+		   dc_optimalmoves.c \
 		   sort.c \
 		   main.c
 
