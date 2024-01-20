@@ -101,7 +101,7 @@ int	main(int argc, char **argv)
 	if (!is_sorted(list_a, argc - 1))
 	{
 		stack_a = dc_build_list(list_a, argc - 1);
-		dc_naive_sort(stack_a, list_a, argc - 1);
+		dc_sort(stack_a, list_a, argc - 1);
 	}
 	free(list_a);
 	return (0);

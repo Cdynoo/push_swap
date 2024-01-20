@@ -82,6 +82,8 @@ void		dc_rot_or_revb(t_list **stack, int rotations);
 void		*ft_memset(void *ptr, int c, size_t len);
 
 void		dc_possiblemoves(t_list **stack_a, t_list **stack_b);
+
 void		testm(t_list **stack_a, t_list **stack_b);
-void		dc_sort2(t_list	*stack_a, long *arr, int len);
+
+void		dc_sort(t_list	*stack_a, long *arr, int len);
 #endif
