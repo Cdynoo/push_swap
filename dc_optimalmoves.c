@@ -30,7 +30,7 @@ static int	dc_edge(t_list **stack, t_list *node)
 			maximum = 0;
 		temp = temp->next;
 	}
-	printf("[%ld] Is min {%d}, Is max {%d}\n", node->num, minimum, maximum);
+	//printf("[%ld] Is min {%d}, Is max {%d}\n", node->num, minimum, maximum);
 	(*stack)->prev->next = *stack;
 	if (minimum || maximum)
 		return (1);
@@ -74,45 +74,23 @@ static void	dc_req(t_list **stack_a, t_list *node, t_list **stack_b)
 	t_list	*neighbour;
 
 	neighbour = NULL;
-	printf("working on {%ld}\n", (node)->num);
+	//printf("working on {%ld}\n", (node)->num);
 	node->op[0] = dc_num_rot(node, *stack_a);
 	node->op[1] = dc_count_revrot(node, *stack_a);
 	neighbour = dc_findneighbour(stack_b, node);
-	printf("Neighbour is {%ld}\n\n", (neighbour)->num);
+	//printf("Neighbour is {%ld}\n\n", (neighbour)->num);
 	node->op[2] = dc_num_rot(neighbour, *stack_b);
 	node->op[3] = dc_count_revrot(neighbour, *stack_b);
 }
 
-void	dc_possiblemoves(t_list **stack_a, t_list **stack_b)
+void	dc_possiblemoves(t_list **stack_a, t_list **stack_b, t_streak **longest)
 {
 	t_list	*node;
 
-	node = *stack_a;
-	while (node->next != *stack_a)
+	node = (*longest)->last->next;
+	while (node != (*longest)->first)
 	{
 		dc_req(stack_a, node, stack_b);
 		node = node->next;
 	}
-	dc_req(stack_a, node, stack_b);
-}
-
-void	testm(t_list **stack_a, t_list **stack_b)
-{
-	dc_push(stack_a, stack_b, "pb\n");
-	dc_push(stack_a, stack_b, "pb\n");
-	dc_push(stack_a, stack_b, "pb\n");
-	//dc_push(stack_a, stack_b, "pb\n");
-	//dc_push(stack_a, stack_b, "pb\n");
-	dc_possiblemoves(stack_a, stack_b);
-
-	t_list	*node;
-
-	(*stack_a)->prev->next = NULL;
-	node = *stack_a;
-	while (node)
-	{
-		printf("Node {%ld}, rot_a {%d}, revrot_a {%d}, rot_b {%d}, revrot_b {%d}\n", node->num, node->op[0], node->op[1], node->op[2], node->op[3]);
-		node = node->next;
-	}
-	(*stack_a)->prev->next = *stack_a;
 }

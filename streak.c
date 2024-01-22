@@ -12,7 +12,7 @@
 
 #include "pushswap.h"
 
-static t_streak	*dc_new_streak(t_list *stack)
+t_streak	*dc_new_streak(t_list *stack)
 {
 	t_streak	*streak;
 
@@ -25,7 +25,7 @@ static t_streak	*dc_new_streak(t_list *stack)
 	return (streak);
 }
 
-static void	dc_reset(t_streak *longest, t_streak *curr, t_list *node, int c)
+void	dc_reset(t_streak *longest, t_streak *curr, t_list *node, int c)
 {
 	if (!c)
 	{
@@ -130,3 +130,4 @@ t_streak	*dc_cyclestreak(t_list **stack)
 	}
 	return (b_longest);
 }
+
