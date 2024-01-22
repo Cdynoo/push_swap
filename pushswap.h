@@ -67,8 +67,16 @@ int			dc_reverse_rot(t_list **lst, char *str);
 int			dc_rrr(t_list **stack_a, t_list **stack_b);
 void		dc_rot_or_rev(t_list **stack, int rotations);
 
+t_streak	*dc_new_streak(t_list *stack);
+void		dc_reset(t_streak *longest, t_streak *curr, t_list *node, int c);
 t_streak	*dc_longeststreak(t_list **stack);
 t_streak	*dc_cyclestreak(t_list **stack);
+
+t_streak	*dc_longestseq(t_list **stack, int len);
+t_streak	*dc_cyclesequence(t_list **stack, int len);
+t_streak	*dc_getsequence(t_list **stack, int len);
+void		dc_filtersorted(t_streak **longest);
+
 
 t_streak	*dc_getstreak(t_list **stack);
 int			dc_updatestreak(t_list **stack);
@@ -81,9 +89,9 @@ void		dc_rot_or_revb(t_list **stack, int rotations);
 
 void		*ft_memset(void *ptr, int c, size_t len);
 
-void		dc_possiblemoves(t_list **stack_a, t_list **stack_b);
+void		dc_possiblemoves(t_list **stack_a, t_list **stack_b, t_streak **longest);
 
-void		testm(t_list **stack_a, t_list **stack_b);
+void		testm(t_list **stack_a, t_list **stack_b, int len);
 
 void		dc_sort(t_list	*stack_a, long *arr, int len);
 #endif

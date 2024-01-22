@@ -22,10 +22,12 @@ SOURCE  =  list_building.c \
 		   rotations.c \
 		   utils.c \
 		   streak.c \
+		   dc_sequence.c  \
 		   dc_init.c  \
 		   dc_movenode.c \
 		   dc_optimalmoves.c \
 		   sort.c \
+		   dc_turk_sort.c \
 		   main.c
 
 OBJS    = $(SOURCE:.c=.o)
