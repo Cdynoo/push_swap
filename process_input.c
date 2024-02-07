@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dc_checker_bonus.c                                 :+:      :+:    :+:   */
+/*   process_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olmohame <olmohame@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 07:32:32 by olmohame          #+#    #+#             */
-/*   Updated: 2024/01/31 07:32:35 by olmohame         ###   ########.fr       */
+/*   Created: 2024/02/01 12:06:05 by olmohame          #+#    #+#             */
+/*   Updated: 2024/02/01 12:06:08 by olmohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap_bonus.h"
+#include "pushswap.h"
 
 static int	is_duplicate(long *list_a, int len)
 {
@@ -63,7 +63,7 @@ static int	read_num(const char *start, long *field)
 	return (1);
 }
 
-int	validate(int num, char **num_list)
+int	validate(int argc, char **argv)
 {
 	int		i;
 	long	*list_a;
@@ -71,14 +71,14 @@ int	validate(int num, char **num_list)
 
 	i = -1;
 	stack_a = NULL;
-	if (!num_list)
+	if (!argv)
 		return (0);
-	list_a = ft_calloc((num), sizeof(long));
+	list_a = ft_calloc((argc), sizeof(long));
 	if (!list_a)
 		return (0);
-	while (++i < num)
+	while (++i < argc)
 	{
-		if (!read_num(num_list[i], &list_a[i]) || is_duplicate(list_a, i + 1))
+		if (!read_num(argv[i], &list_a[i]) || is_duplicate(list_a, i + 1))
 		{
 			free(list_a);
 			list_a = NULL;
@@ -86,7 +86,8 @@ int	validate(int num, char **num_list)
 			return (0);
 		}
 	}
-	dc_testsort(stack_a, list_a, num);
+	if (!ls_is_sorted(list_a, argc))
+		dc_sort(stack_a, list_a, argc);
 	free(list_a);
 	return (0);
 }

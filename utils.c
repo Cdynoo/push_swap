@@ -5,86 +5,108 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: olmohame <olmohame@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/01 04:36:31 by olmohame          #+#    #+#             */
-/*   Updated: 2024/01/01 04:36:34 by olmohame         ###   ########.fr       */
+/*   Created: 2024/02/01 12:29:58 by olmohame          #+#    #+#             */
+/*   Updated: 2024/02/01 12:30:00 by olmohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int	is_sorted(long *arr, int len)
+t_list	*dc_get_min(t_list **stack)
 {
-	int	i;
+	t_list	*temp;
+	t_list	*minnode;
 
-	i = -1;
-	while (++i < len - 1)
+	minnode = NULL;
+	if (stack && *stack)
 	{
-		if (arr[i] > arr[i + 1])
-			return (0);
-	}
-	return (1);
-}
-
-void	sort_list(long *arr, int len)
-{
-	int		i;
-	long	temp;
-	int		swaped;
-
-	i = 1;
-	swaped = 1;
-	while (swaped == 1)
-	{
-		i = 0;
-		swaped = 0;
-		while (i < len - 1)
+		(*stack)->prev->next = NULL;
+		temp = *stack;
+		while (temp)
 		{
-			if (arr[i] > arr[i + 1])
-			{
-				temp = arr[i];
-				arr[i] = arr[i + 1];
-				arr[i + 1] = temp;
-				swaped = 1;
-			}
-			i++;
+			if (!minnode || temp->num < minnode->num)
+				minnode = temp;
+			temp = temp->next;
 		}
+		(*stack)->prev->next = *stack;
 	}
+	return (minnode);
 }
 
-void	*ft_memset(void *ptr, int c, size_t len)
+t_list	*dc_get_max(t_list **stack)
 {
-	unsigned char	*p;
+	t_list	*temp;
+	t_list	*maxnode;
 
-	p = (unsigned char *)ptr;
-	while (len-- > 0)
+	maxnode = NULL;
+	if (stack && *stack)
 	{
-		*p = (unsigned char)c;
-		p++;
+		(*stack)->prev->next = NULL;
+		temp = *stack;
+		while (temp)
+		{
+			if (!maxnode || temp->num > maxnode->num)
+				maxnode = temp;
+			temp = temp->next;
+		}
+		(*stack)->prev->next = *stack;
 	}
-	return (ptr);
+	return (maxnode);
 }
 
-void	*ft_calloc(size_t nitems, size_t size)
+int	dc_edge(t_list **stack, t_list *node)
 {
-	void	*res;
-	int		n_bytes;
+	int		maximum;
+	int		minimum;
+	t_list	*temp;
 
-	n_bytes = nitems * size;
-	if (nitems != 0 && n_bytes / nitems != size)
-		return (0);
-	res = malloc(n_bytes);
-	if (res == NULL)
-		return (NULL);
-	ft_memset(res, 0, n_bytes);
-	return (res);
+	if (stack && *stack && node)
+	{
+		maximum = 1;
+		minimum = 1;
+		(*stack)->prev->next = NULL;
+		temp = *stack;
+		while (temp)
+		{
+			if (temp->num < node->num)
+				minimum = 0;
+			if (temp->num > node->num)
+				maximum = 0;
+			temp = temp->next;
+		}
+		(*stack)->prev->next = *stack;
+		if (minimum || maximum)
+			return (1);
+	}
+	return (0);
 }
 
-size_t	ft_strlen(const char *str)
+void	dc_rot_or_rev(t_list **stack, int rotations)
 {
-	size_t	str_len;
+	int	len;
+	int	rev;
 
-	str_len = 0;
-	while (str[str_len])
-		str_len++;
-	return (str_len);
+	len = dc_count(stack);
+	rev = (len - rotations);
+	if (rotations <= (len - rotations))
+		while (rotations--)
+			dc_rotate(stack, "ra\n");
+	else
+		while (rev--)
+			dc_reverse_rot(stack, "rra\n");
+}
+
+void	dc_possiblemoves(t_list **stack_a, t_list **stack_b)
+{
+	int		len;
+	t_list	*node;
+
+	node = (*stack_a);
+	len = dc_count(stack_a);
+	while (len)
+	{
+		len--;
+		dc_req(stack_a, node, stack_b);
+		node = node->next;
+	}
 }

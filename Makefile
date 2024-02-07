@@ -12,38 +12,69 @@
 
 NAME = push_swap
 
+B_NAME = checker_Mac
+
+LIBFT_DIR = ./libft
+
+LIBFT = ./libft/libft.a
+
+INCLUDE = -L $(LIBFT_DIR) -lft
+
 CC = cc
 
-#FLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -I $(LIBFT_DIR)
 
 SOURCE  =  list_building.c \
-		   list_manipulation.c \
-		   moves.c \
-		   rotations.c \
+		   dc_list_manipulation.c \
+		   dc_moves.c \
+		   dc_rotations.c \
+		   list.c \
 		   utils.c \
-		   streak.c \
-		   dc_sequence.c  \
-		   dc_init.c  \
-		   dc_movenode.c \
+		   dc_cost.c \
 		   dc_optimalmoves.c \
-		   sort.c \
 		   dc_turk_sort.c \
-		   main.c
+		   process_input.c \
+		   main.c 
+
+B_SOURCE  =	dc_list_manipulation_bonus.c \
+			dc_moves_bonus.c \
+			dc_rotations_bonus.c \
+			list_bonus.c \
+			list_building_bonus.c \
+			dc_testsort_bonus.c \
+			dc_checker_bonus.c \
+			main_bonus.c 
 
 OBJS    = $(SOURCE:.c=.o)
 
-$(NAME): $(OBJS)
-	$(CC) $(FLAGS) $(SOURCE) -o $(NAME)
+B_OBJS    = $(B_SOURCE:.c=.o)
+
+$(NAME): $(LIBFT) $(OBJS)
+	$(CC) $(CFLAGS)  $(OBJS) -o $(NAME) ${INCLUDE}
+
+$(B_NAME): $(LIBFT) $(B_OBJS)
+	$(CC) $(CFLAGS)  $(B_OBJS) -o $(B_NAME) ${INCLUDE}
+
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
+
+.o: .c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 norm:
-	norminette $(SOURCE)
+	norminette $(SOURCE) $(B_SOURCE)
 
-all: $(NAME)
+all: $(NAME) $(B_NAME)
+
+bonus: $(B_NAME)
 
 clean:
-	@rm -rf *.o
+	@rm -f $(OBJS) $(B_OBJS)
+	@cd $(LIBFT_DIR) && $(MAKE) clean
 
 fclean: clean
 	@rm -rf $(NAME)
+	@rm -rf $(B_NAME)
+	@cd $(LIBFT_DIR) && $(MAKE) fclean
 
 re: fclean all

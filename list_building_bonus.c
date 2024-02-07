@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_building.c                                    :+:      :+:    :+:   */
+/*   list_building_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olmohame <olmohame@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 04:40:17 by olmohame          #+#    #+#             */
-/*   Updated: 2024/01/02 04:40:19 by olmohame         ###   ########.fr       */
+/*   Created: 2024/01/31 10:15:35 by olmohame          #+#    #+#             */
+/*   Updated: 2024/01/31 10:15:37 by olmohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "pushswap_bonus.h"
 
 t_list	*dc_build_list(long *list_a, int len)
 {
@@ -64,16 +64,4 @@ int	dc_issorted(t_list **lst)
 		}
 	}
 	return (1);
-}
-
-int	dc_issubsorted(t_list **lst)
-{
-	if (lst && *lst)
-	{
-		if (dc_count(lst) == 2)
-			return (((*lst)->i < (*lst)->next->i));
-		return (((*lst)->i < (*lst)->next->i) && \
-		((*lst)->next->i < (*lst)->next->next->i));
-	}
-	return (0);
 }
