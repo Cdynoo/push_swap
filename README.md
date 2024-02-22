@@ -27,7 +27,9 @@ pb
 sa
 pa
 pa
-pa
+pa```
+
+## Description
 ## Requirements
 - The project must include a Makefile for compiling the source files.
 - Global variables are not allowed.
