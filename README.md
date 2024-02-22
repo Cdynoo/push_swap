@@ -29,19 +29,6 @@ Push Swap is a project that focuses on sorting a set of integers using two stack
   - Sorting 100 numbers requires a maximum of 700 moves.
   - Lists of 500 numbers are sorted in maximum 5500 moves.
 
-
-## Example
-```bash
-$> ./push_swap 2 1 3 6 5 8
-sa
-pb
-pb
-pb
-sa
-pa
-pa
-pa
-
 # Checker
 
 ## Description
@@ -72,3 +59,17 @@ $> ./checker 3 2 one 0
 Error
 $> ./checker "" 1
 Error
+
+
+## Example
+```bash
+$> ./push_swap 2 1 3 6 5 8
+sa
+pb
+pb
+pb
+sa
+pa
+pa
+pa
+
