@@ -41,3 +41,34 @@ sa
 pa
 pa
 pa
+
+# Checker
+
+## Description
+Checker is a program designed to validate a sequence of instructions applied to a list of integers. The program takes a list of integers as an argument and then reads instructions from the shell. It applies these instructions to the given list and validates whether the list is sorted after execution.
+
+## Features
+- **Input Validation:** Checker validates the list of numbers and instructions to ensure they meet specified criteria. It checks for integers, duplicates, and valid instructions from the specified set.
+- **Sorting Verification:** After executing the instructions, Checker verifies whether the list is sorted and the stack b is empty. If so, it outputs "OK"; otherwise, it outputs "KO".
+- **Error Handling:** The program displays appropriate error messages for various error conditions, such as invalid input arguments, non-existent instructions, or incorrectly formatted instructions.
+
+## Learning Objectives
+- **Memory Management:** Checker carefully manages memory usage and frees all allocated memory when the program finishes execution.
+- **Input Handling:** Implementing input validation and error handling enhances proficiency in handling user input and ensuring program reliability.
+- **C Programming:** Checker is implemented in C, focusing on writing clean, efficient, and error-free code, adhering to project requirements and constraints.
+
+## Usage
+- Provide a list of integers as an argument to the `checker` program.
+- Enter instructions on the standard input, each followed by a newline.
+- Upon completion, the program outputs "OK" if the list is sorted, or "KO" otherwise.
+
+## Example
+```bash
+$> ./checker 3 2 1 0 rra pb sa rra pa
+OK
+$> ./checker 3 2 1 0 sa rra pb
+KO
+$> ./checker 3 2 one 0
+Error
+$> ./checker "" 1
+Error
