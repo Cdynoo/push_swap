@@ -22,6 +22,14 @@ Push Swap is a project that focuses on sorting a set of integers using two stack
 - To use the `push_swap` program, provide a list of integers as arguments.
 - The program will then output the smallest sequence of instructions required to sort the integers in ascending order.
 
+## Performance Guarantees
+- The program guarantees specific maximum numbers of moves for sorting different sizes of lists:
+  - Lists of 3 numbers are sorted in maximum 3 moves.
+  - Lists of 5 numbers are sorted in maximum 12 moves.
+  - Sorting 100 numbers requires a maximum of 700 moves.
+  - Lists of 500 numbers are sorted in maximum 5500 moves.
+
+
 ## Example
 ```bash
 $> ./push_swap 2 1 3 6 5 8
@@ -32,5 +40,4 @@ pb
 sa
 pa
 pa
-pa```
-
+pa
