@@ -50,6 +50,7 @@ Checker is a program designed to validate a sequence of instructions applied to 
 - Upon completion, the program outputs "OK" if the list is sorted, or "KO" otherwise.
 
 ## Example
+```bash
 $> ./push_swap 2 1 3 6 5 8
 sa
 pb
@@ -60,8 +61,6 @@ pa
 pa
 pa
 
-## Example
-```bash
 $> ./checker 3 2 1 0
 rra
 pb
@@ -69,6 +68,7 @@ sa
 rra
 pa
 OK
+
 $> ./checker 3 2 1 0
 sa
 rra
@@ -76,6 +76,7 @@ pb
 KO
 $> ./checker 3 2 one 0
 Error
+
 $> ./checker "" 1
 Error
 
