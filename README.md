@@ -74,6 +74,7 @@ sa
 rra
 pb
 KO
+
 $> ./checker 3 2 one 0
 Error
 
