@@ -13,6 +13,11 @@ Push Swap is a project that focuses on sorting a set of integers using two stack
 - **Data Structures:** Implementing the project requires understanding and utilizing data structures such as double circular lists for stack manipulation.
 - **C Programming:** The project encourages proficiency in C programming, including writing clean and efficient code, implementing error handling, and adhering to project requirements.
 
+## Requirements
+- The project must include a Makefile for compiling the source files.
+- Global variables are not allowed.
+- Proper error handling must be implemented, including validation of input arguments.
+
 ## Usage
 - To use the `push_swap` program, provide a list of integers as arguments.
 - The program will then output the smallest sequence of instructions required to sort the integers in ascending order.
@@ -29,8 +34,3 @@ pa
 pa
 pa```
 
-## Description
-## Requirements
-- The project must include a Makefile for compiling the source files.
-- Global variables are not allowed.
-- Proper error handling must be implemented, including validation of input arguments.
